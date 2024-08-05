@@ -6,7 +6,6 @@ package com.example.agro.model;
 
 import com.example.agro.enumeration.TipoProprietario;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -28,8 +27,8 @@ public class Proprietario {
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
     
-    @Column(name="CPF_CNPJ", length=100, nullable=false, unique=true)
-    private String cpf_cnpj;
+    @Column(name="CPFCNPJ", length=100, nullable=false, unique=true)
+    private String cpfcnpj;
     
     @Column(name="TIPO", nullable=false)
     private TipoProprietario tipo;
@@ -46,11 +45,11 @@ public class Proprietario {
     }
     
     public String getCpfCnpj(){
-        return this.cpf_cnpj;
+        return this.cpfcnpj;
     }
     
     public void setCpfCnpj(String cpf_cnpj){
-        this.cpf_cnpj = cpf_cnpj;
+        this.cpfcnpj = cpf_cnpj;
     }
     
     public String getNome(){
@@ -59,6 +58,14 @@ public class Proprietario {
     
     public void setNome(String nome){
         this.nome = nome;
+    }
+    
+    public TipoProprietario getTipo(){
+        return this.tipo;
+    }
+    
+    public void setTipo(TipoProprietario tipo){
+        this.tipo = tipo;
     }
     
 }

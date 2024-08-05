@@ -4,24 +4,28 @@
  */
 package com.example.agro.enumeration;
 
+import com.fasterxml.jackson.annotation.JsonValue;
+
 /**
  *
  * @author evpro
  */
-public enum Cultura {
+public enum CulturaEnum {
     SOJA("Soja"),
     MILHO("Milho"),
     ALGODAO("Algodão"),
     CAFE("Café"),
     CANA("Cana de açucar");
     
-    private String display_name;
+    private String nome_exibicao;
 
-    Cultura(String display_name) {
-        this.display_name = display_name;
+    CulturaEnum(String nome_exibicao) {
+        this.nome_exibicao = nome_exibicao;
     }
-
-    public String getDisplayName() {
-        return this.display_name;
+    
+    @Override
+    @JsonValue
+    public String toString() {
+        return this.nome_exibicao;
     }
 }

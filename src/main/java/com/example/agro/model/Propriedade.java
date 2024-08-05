@@ -4,12 +4,13 @@
  */
 package com.example.agro.model;
 
-import com.example.agro.enumeration.Cultura;
+import com.example.agro.enumeration.CulturaEnum;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIdentityReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -17,7 +18,10 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -33,7 +37,6 @@ public class Propriedade {
     
     @ManyToOne(fetch = FetchType.LAZY)
     @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
-    @JsonIdentityReference(alwaysAsId = true)
     @JsonProperty("proprietario")
     private Proprietario proprietario;
     
@@ -55,8 +58,8 @@ public class Propriedade {
     @Column(name="AREA_VEGETACAO_HA", nullable=false)
     private Double area_vegetacao_ha;
     
-    @Column(name="CULTURA", nullable=false)
-    private Cultura cultura;
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "cultura", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Cultura> culturas = new ArrayList<>();
     
     public long getId(){
         return this.id;
@@ -118,11 +121,11 @@ public class Propriedade {
         this.area_vegetacao_ha = area_vegetacao_ha;
     }
     
-    public Cultura getCultura(){
-        return this.cultura;
+    public List<Cultura> getCulturas(){
+        return this.culturas;
     }
     
-    public void setCultura(Cultura cultura){
-        this.cultura = cultura;
+    public void setCulturas(List<Cultura> culturas){
+        this.culturas = culturas;
     }
 }
