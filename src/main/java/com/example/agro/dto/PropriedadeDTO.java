@@ -4,6 +4,7 @@
  */
 package com.example.agro.dto;
 
+import jakarta.validation.constraints.NotNull;
 import java.util.List;
 
 /**
@@ -14,22 +15,31 @@ public class PropriedadeDTO {
 
     private Long id;
     
+    @NotNull
     private String cpfcnpj;
     
+    @NotNull
     private String nome_proprietario;
     
+    @NotNull
     private String nome;
     
+    @NotNull
     private String cidade_ibge;
     
+    @NotNull
     private String estado_ibge;
     
+    @NotNull
     private Double area_total_ha;
     
+    @NotNull
     private Double area_agricultavel_ha;
     
+    @NotNull
     private Double area_vegetacao_ha;
     
+    @NotNull
     private List<CulturaDTO> culturas;
     
     public Long getId() {

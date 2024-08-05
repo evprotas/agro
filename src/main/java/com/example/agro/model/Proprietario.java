@@ -14,7 +14,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import java.util.ArrayList;
 import java.util.List;
 /**
  *
@@ -38,7 +37,7 @@ public class Proprietario {
     
     @JsonIgnore
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "proprietario", orphanRemoval = false)
-    private List<Propriedade> propriedades = new ArrayList<>();
+    private List<Propriedade> propriedades;
     
     public long getId(){
         return this.id;

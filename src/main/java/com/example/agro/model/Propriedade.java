@@ -4,12 +4,6 @@
  */
 package com.example.agro.model;
 
-import com.example.agro.enumeration.CulturaEnum;
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonIdentityReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -20,7 +14,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -35,9 +28,7 @@ public class Propriedade {
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
     
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
-    @JsonProperty("proprietario")
+    @ManyToOne
     private Proprietario proprietario;
     
     @Column(name="NOME", length=100, nullable=false, unique=false)
@@ -58,8 +49,8 @@ public class Propriedade {
     @Column(name="AREA_VEGETACAO_HA", nullable=false)
     private Double area_vegetacao_ha;
     
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "cultura", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Cultura> culturas = new ArrayList<>();
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "propriedade", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Cultura> culturas;
     
     public long getId(){
         return this.id;

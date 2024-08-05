@@ -20,7 +20,7 @@ public class CpfCnpjUtil {
     private static final String CPF_REGEX = "^[0-9]{3}\\.[0-9]{3}\\.[0-9]{3}\\-[0-9]{2}$";
     private static final String CNPJ_REGEX = "^[0-9]{2}\\.[0-9]{3}\\.[0-9]{3}\\/[0-9]{4}\\-[0-9]{2}$";
 
-public static boolean validaFormato(String cpf_cnpj){
+    public static boolean validaFormato(String cpf_cnpj){
         if(cpf_cnpj.matches(CPF_REGEX)){
             return true;
         } else if(cpf_cnpj.matches(CNPJ_REGEX)){
